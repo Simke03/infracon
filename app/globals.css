@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #1c2736;
+  --cream: #c8c2b8;
+  --cream-light: #f2f0ec;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--navy);
+  background: var(--cream-light);
+  overflow-x: hidden;
+}
+
+/* Grain texture overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cream);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b0a898;
+}
+
+/* Selection color */
+::selection {
+  background: var(--cream);
+  color: var(--navy);
+}
+
+/* Grid pattern for hero */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(200, 194, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 194, 184, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Section transitions */
+.section-light {
+  background-color: var(--cream-light);
+}
+
+.section-dark {
+  background-color: var(--navy);
+  color: var(--cream-light);
+}
+
+/* Contact form input styling */
+.form-input {
+  @apply w-full bg-navy-700 border border-navy-600 rounded-lg px-4 py-3 text-cream-100
+    placeholder:text-cream-500 focus:outline-none focus:border-cream-400
+    transition-colors duration-300;
+}
+
+/* Map placeholder */
+.map-placeholder {
+  background:
+    linear-gradient(135deg, #27364b 0%, #1c2736 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Marquee animation */
+.marquee-track {
+  width: max-content;
+}
+
+.marquee-scroll {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.map-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200, 194, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 194, 184, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
