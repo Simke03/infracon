@@ -1,0 +1,34 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+
+const PATHS = [
+  'M653.5,965.32c0-153.22,0-306,0-459.21c131.65-74.14,263.41-148.33,395.48-222.7 c7.76,5.06,15.25,9.95,22.49,14.68c0,78.96,0,157.41,0,236.26c-17.67,0-35.05,0-53.06,0c0-59.26,0-118.33,0-178.94 C912.54,414.55,807.82,473.06,703.03,531.6c0,129.46,0,258.56,0,388.16c104.84,0,209.55,0,314.97,0c0-35.15,0-70.37,0-106.05 c18.08,0,35.46,0,53.3,0c0,50.41,0,100.78,0,151.61C932.2,965.32,793.16,965.32,653.5,965.32z',
+  'M941.85,167.54c0,42.54,0,83.67,0,125.14c-15.86,9.06-31.58,18.05-48.07,27.47c0-77.64,0-154.42,0-232.32 c123.67,69.34,246.78,138.35,369.7,207.26c0,223.61,0,446.71,0,670.24c-47.32,0-94.36,0-141.82,0c0-14.86,0-29.57,0-44.99 c31.39,0,62.61,0,94.2,0c0-199.78,0-398.86,0-598.8C1125.2,270.59,1034.1,219.39,941.85,167.54z',
+  'M867.67,493.02c32.67-18.11,65.69-36.42,99.51-55.17c0,149.9,0,298.97,0,448.48c-33,0-66.04,0-99.51,0 C867.67,755.35,867.67,624.49,867.67,493.02z',
+]
+
+// Draw only on the first mount after a full load; returning to the homepage
+// through client navigation shows the finished mark.
+let drawnThisLoad = false
+
+export default function LogoDraw({ className = '' }: { className?: string }) {
+  const [animate] = useState(() => !drawnThisLoad)
+  useEffect(() => {
+    drawnThisLoad = true
+  }, [])
+
+  return (
+    <svg
+      viewBox="640 74 636 904"
+      className={`logo-draw text-cream-100 ${className}`}
+      data-animate={animate ? '' : undefined}
+      role="img"
+      aria-label="INFRACON"
+    >
+      {PATHS.map((d) => (
+        <path key={d.slice(0, 16)} d={d} pathLength={1} />
+      ))}
+    </svg>
+  )
+}

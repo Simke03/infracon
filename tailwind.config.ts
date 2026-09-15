@@ -40,10 +40,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ['Plus Jakarta Sans', 'sans-serif'],
-        serif: ['Cormorant Garamond', 'serif'],
-        body: ['Plus Jakarta Sans', 'sans-serif'],
+        display: ['var(--font-jakarta)', 'sans-serif'],
+        serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
+        body: ['var(--font-jakarta)', 'sans-serif'],
         orbitron: ['var(--font-orbitron)', 'sans-serif'],
+        dm: ['var(--font-dm)', 'sans-serif'],
       },
       letterSpacing: {
         widest: '0.25em',

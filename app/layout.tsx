@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import { Plus_Jakarta_Sans, Cormorant_Garamond, Orbitron } from 'next/font/google'
+import { Plus_Jakarta_Sans, Cormorant_Garamond, DM_Sans } from 'next/font/google'
+import localFont from 'next/font/local'
 import MotionProvider from '@/components/MotionProvider'
 import './globals.css'
 
@@ -9,10 +10,21 @@ const jakarta = Plus_Jakarta_Sans({
   display: 'swap',
 })
 
-const orbitron = Orbitron({
-  subsets: ['latin'],
+// Orbitron with Č Ć Đ č ć đ added (Orbitron has no Latin Extended subset).
+// Renamed per the OFL Reserved Font Name clause; see app/fonts/OFL.txt.
+const orbitron = localFont({
+  src: [
+    { path: './fonts/InfraconDisplay-Regular.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/InfraconDisplay-Bold.woff2', weight: '700', style: 'normal' },
+  ],
   variable: '--font-orbitron',
-  weight: ['400', '500', '600', '700', '800', '900'],
+  display: 'swap',
+})
+
+const dmSans = DM_Sans({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-dm',
+  weight: ['400', '500', '700'],
   display: 'swap',
 })
 
@@ -66,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="sr" className={`${jakarta.variable} ${cormorant.variable} ${orbitron.variable}`}>
+    <html lang="sr" className={`${jakarta.variable} ${cormorant.variable} ${orbitron.variable} ${dmSans.variable}`}>
       <body className="font-display antialiased">
         <MotionProvider>{children}</MotionProvider>
         <div className="grain-overlay" aria-hidden="true" />
