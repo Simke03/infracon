@@ -173,7 +173,7 @@ export default function Projects() {
                 <button
                   key={cat}
                   onClick={() => setActiveFilter(cat)}
-                  className={`font-display text-sm tracking-wider px-5 py-2 rounded-sm transition-all duration-300 ${
+                  className={`font-display text-sm tracking-wider px-5 py-2 rounded-sm transition-[background-color,color,transform] duration-200 ease-out active:scale-[0.97] ${
                     activeFilter === cat
                       ? 'bg-navy-800 text-cream-100'
                       : 'bg-navy-100/50 text-navy-600 hover:bg-navy-200/50'
@@ -200,8 +200,17 @@ export default function Projects() {
                   <TiltCard tiltStrength={6} className="group relative aspect-[4/3] rounded-sm overflow-hidden cursor-pointer"
                   >
                     <div
-                      className="absolute inset-0"
+                      className="absolute inset-0 transition-transform duration-150 ease-out active:scale-[0.98]"
+                      role="button"
+                      tabIndex={0}
+                      aria-label={project.title}
                       onClick={() => setSelectedProject(project)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault()
+                          setSelectedProject(project)
+                        }
+                      }}
                     >
                       {/* Placeholder background */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${project.color}`} />
@@ -211,31 +220,31 @@ export default function Projects() {
 
                       {/* Project initial letter */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="font-serif text-8xl text-cream-100/5 group-hover:text-cream-100/10 transition-all duration-500 group-hover:scale-110">
+                        <span className="font-serif text-8xl text-cream-100/5 group-hover:text-cream-100/10 transition-[color,transform] duration-300 ease-out group-hover:scale-110">
                           {project.title[0]}
                         </span>
                       </div>
 
                       {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-navy-900/0 group-hover:bg-navy-900/80 transition-all duration-500" />
+                      <div className="absolute inset-0 bg-navy-900/0 group-hover:bg-navy-900/80 transition-colors duration-200" />
 
                       {/* Content - always visible at bottom */}
                       <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                        <div className="transform translate-y-0 group-hover:-translate-y-2 transition-transform duration-500">
+                        <div className="transform translate-y-0 group-hover:-translate-y-2 transition-transform duration-200 ease-out">
                           <span className="inline-block font-display text-[10px] tracking-ultrawide text-cream-300/80 bg-cream-100/10 px-3 py-1 rounded-sm uppercase">
                             {project.category}
                           </span>
                           <h3 className="font-display font-semibold text-cream-100 text-lg mt-3">
                             {project.title}
                           </h3>
-                          <p className="font-display text-cream-300/80 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <p className="font-display text-cream-300/80 text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                             {project.description}
                           </p>
                         </div>
                       </div>
 
                       {/* Decorative corner on hover */}
-                      <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-cream-400/0 group-hover:border-cream-400/30 transition-all duration-500" />
+                      <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-cream-400/0 group-hover:border-cream-400/30 transition-colors duration-200" />
                     </div>
                   </TiltCard>
                 </motion.div>
@@ -252,8 +261,8 @@ export default function Projects() {
             className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
+            transition={{ duration: 0.2 }}
           >
             {/* Backdrop */}
             <div
@@ -264,10 +273,10 @@ export default function Projects() {
             {/* Modal content */}
             <motion.div
               className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-navy-800 rounded-sm shadow-2xl will-change-transform"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.25, ease: [0.25, 0.4, 0.25, 1] }}
+              initial={{ opacity: 0, transform: 'translateY(16px)' }}
+              animate={{ opacity: 1, transform: 'translateY(0px)' }}
+              exit={{ opacity: 0, transform: 'translateY(8px)', transition: { duration: 0.15 } }}
+              transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
             >
               {/* Header image area */}
               <div className={`relative h-56 md:h-72 bg-gradient-to-br ${selectedProject.color}`}>
@@ -290,7 +299,7 @@ export default function Projects() {
                 {/* Close button */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-navy-900/60 rounded-sm hover:bg-navy-900/80 transition-colors group"
+                  className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-navy-900/60 rounded-sm hover:bg-navy-900/80 transition-[background-color,transform] duration-150 ease-out active:scale-[0.97] group"
                   aria-label="Zatvori"
                 >
                   <svg viewBox="0 0 24 24" className="w-5 h-5 text-cream-300 group-hover:text-cream-100 transition-colors" fill="none" stroke="currentColor" strokeWidth="1.5">

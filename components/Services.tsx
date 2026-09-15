@@ -131,17 +131,17 @@ export default function Services() {
             <ScrollReveal key={service.title} delay={i * 0.08}>
               <TiltCard tiltStrength={8}>
                 <motion.div
-                  className="group relative p-8 rounded-sm border border-cream-400/10 bg-navy-700/30 hover:bg-navy-700/60 transition-all duration-500"
+                  className="group relative p-8 rounded-sm border border-cream-400/10 bg-navy-700/30 hover:bg-navy-700/60 transition-colors duration-200 ease-out"
                   whileHover={{ y: -4 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
                 >
                   {/* Hover border effect */}
-                  <div className="absolute inset-0 rounded-sm border border-cream-400/0 group-hover:border-cream-400/20 transition-all duration-500" />
+                  <div className="absolute inset-0 rounded-sm border border-cream-400/0 group-hover:border-cream-400/20 transition-colors duration-200" />
 
                   {/* Glow effect on hover */}
-                  <div className="absolute inset-0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-cream-400/5 via-transparent to-transparent" />
+                  <div className="absolute inset-0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gradient-to-br from-cream-400/5 via-transparent to-transparent" />
 
-                  <div className="relative text-cream-400 group-hover:text-cream-300 transition-colors duration-300">
+                  <div className="relative text-cream-400 group-hover:text-cream-300 transition-colors duration-200">
                     {service.icon}
                   </div>
 
@@ -154,7 +154,7 @@ export default function Services() {
                   </p>
 
                   {/* Decorative corner */}
-                  <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-cream-400/0 group-hover:border-cream-400/20 transition-all duration-500" />
+                  <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-cream-400/0 group-hover:border-cream-400/20 transition-colors duration-200" />
                 </motion.div>
               </TiltCard>
             </ScrollReveal>

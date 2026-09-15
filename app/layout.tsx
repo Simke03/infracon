@@ -1,5 +1,6 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, Cormorant_Garamond, Orbitron } from 'next/font/google'
+import MotionProvider from '@/components/MotionProvider'
 import './globals.css'
 
 const jakarta = Plus_Jakarta_Sans({
@@ -24,6 +25,7 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://infra-con.com'),
   title: 'INFRACON — Infrastruktura i konstrukcije za budućnost',
   description:
     'INFRACON je građevinska kompanija u Crnoj Gori specijalizovana za visokogradnju, niskogradnju, infrastrukturu, rekonstrukciju, projektovanje i konsalting.',
@@ -37,14 +39,25 @@ export const metadata: Metadata = {
     'Podgorica',
     'INFRACON',
   ],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'INFRACON — Infrastruktura i konstrukcije za budućnost',
     description:
       'Gradimo pouzdano. Gradimo za generacije. Kompletna ponuda građevinskih usluga u Crnoj Gori.',
     type: 'website',
+    url: '/',
     locale: 'sr_Latn_ME',
     siteName: 'INFRACON',
   },
+  twitter: {
+    card: 'summary_large_image',
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#1c2736',
 }
 
 export default function RootLayout({
@@ -55,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="sr" className={`${jakarta.variable} ${cormorant.variable} ${orbitron.variable}`}>
       <body className="font-display antialiased">
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         <div className="grain-overlay" aria-hidden="true" />
       </body>
     </html>

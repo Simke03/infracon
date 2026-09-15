@@ -118,7 +118,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="font-display text-sm tracking-widest text-cream-100 border border-cream-400/40 px-8 py-3 hover:bg-cream-100/5 hover:border-cream-400/80 transition-all duration-500 w-full md:w-auto"
+                  className="font-display text-sm tracking-widest text-cream-100 border border-cream-400/40 px-8 py-3 hover:bg-cream-100/5 hover:border-cream-400/80 transition-[background-color,border-color,transform] duration-200 ease-out active:scale-[0.97] w-full md:w-auto"
                 >
                   POŠALJITE PORUKU
                 </button>

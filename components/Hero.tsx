@@ -1,23 +1,25 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import Logo from './Logo'
 import MagneticButton from './MagneticButton'
 import FloatingShapes from './FloatingShapes'
 
 const words = ['Infrastruktura', 'i', 'konstrukcije', 'za', 'budućnost']
+const ease = [0.23, 1, 0.32, 1] as const
 
 export default function Hero() {
   const ref = useRef(null)
+  const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
   })
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', reduceMotion ? '0%' : '30%'])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const contentY = useTransform(scrollYProgress, [0, 0.5], ['0%', '20%'])
+  const contentY = useTransform(scrollYProgress, [0, 0.5], ['0%', reduceMotion ? '0%' : '20%'])
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center section-dark overflow-hidden">
@@ -38,13 +40,13 @@ export default function Hero() {
         className="absolute top-20 left-8 w-20 h-20 border-l border-t border-cream/10"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
+        transition={{ delay: 0.8, duration: 0.5, ease }}
       />
       <motion.div
         className="absolute bottom-20 right-8 w-20 h-20 border-r border-b border-cream/10"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1.4, duration: 0.8 }}
+        transition={{ delay: 0.9, duration: 0.5, ease }}
       />
 
       <motion.div
@@ -55,7 +57,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+          transition={{ duration: 0.6, ease }}
         >
           <Logo size={300} showText={false} light className="mx-auto" />
         </motion.div>
@@ -65,7 +67,7 @@ export default function Hero() {
           className="font-orbitron font-bold text-cream-100 tracking-ultrawide text-3xl md:text-5xl lg:text-6xl mt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7 }}
+          transition={{ delay: 0.15, duration: 0.5, ease }}
         >
           INFRACON
         </motion.h1>
@@ -75,7 +77,7 @@ export default function Hero() {
           className="w-16 h-px bg-cream-400 mx-auto mt-6"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.5, ease }}
         />
 
         {/* Tagline - word by word reveal */}
@@ -84,12 +86,12 @@ export default function Hero() {
             <motion.span
               key={i}
               className="font-serif text-cream-300 text-xl md:text-2xl lg:text-3xl italic inline-block"
-              initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
+              initial={{ opacity: 0, y: 12, filter: 'blur(6px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{
-                delay: 0.7 + i * 0.12,
-                duration: 0.6,
-                ease: [0.25, 0.4, 0.25, 1],
+                delay: 0.35 + i * 0.06,
+                duration: 0.5,
+                ease,
               }}
             >
               {word}
@@ -102,7 +104,7 @@ export default function Hero() {
           className="font-display text-cream-500 text-sm md:text-base tracking-wider mt-4 max-w-lg mx-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.7 }}
+          transition={{ delay: 0.6, duration: 0.5, ease }}
         >
           Gradimo pouzdano. Gradimo za generacije.
         </motion.p>
@@ -112,7 +114,7 @@ export default function Hero() {
           className="mt-10"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
+          transition={{ delay: 0.7, duration: 0.5, ease }}
         >
           <MagneticButton strength={0.4}>
             <a
@@ -121,7 +123,7 @@ export default function Hero() {
                 e.preventDefault()
                 document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })
               }}
-              className="inline-block font-display text-sm tracking-widest text-cream-100 border border-cream-400/40 px-8 py-3 hover:bg-cream-100/5 hover:border-cream-400/80 transition-all duration-500"
+              className="inline-block font-display text-sm tracking-widest text-cream-100 border border-cream-400/40 px-8 py-3 hover:bg-cream-100/5 hover:border-cream-400/80 transition-[background-color,border-color,transform] duration-200 ease-out active:scale-[0.97]"
             >
               KONTAKTIRAJTE NAS
             </a>
@@ -134,7 +136,7 @@ export default function Hero() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.6 }}
+        transition={{ delay: 1.1, duration: 0.5, ease }}
       >
         <motion.div
           className="flex flex-col items-center gap-2"

@@ -39,7 +39,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <button
                     onClick={() => handleClick(link.href)}
-                    className="font-display text-sm text-cream-400 hover:text-cream-200 transition-colors"
+                    className="font-display text-sm text-cream-400 hover:text-cream-200 transition-[color,transform] duration-150 ease-out active:scale-[0.97]"
                   >
                     {link.label}
                   </button>

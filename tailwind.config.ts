@@ -1,6 +1,9 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -45,6 +48,9 @@ const config: Config = {
       letterSpacing: {
         widest: '0.25em',
         ultrawide: '0.35em',
+      },
+      transitionTimingFunction: {
+        out: 'cubic-bezier(0.23, 1, 0.32, 1)',
       },
       maxWidth: {
         '8xl': '88rem',

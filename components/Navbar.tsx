@@ -54,21 +54,21 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow] duration-300 ease-out ${
           scrolled
             ? 'bg-navy-800/95 backdrop-blur-md shadow-lg'
             : 'bg-transparent'
         }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+        initial={{ opacity: 0, transform: 'translateY(-100%)' }}
+        animate={{ opacity: 1, transform: 'translateY(0%)' }}
+        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="flex items-center gap-3 group"
+              className="flex items-center gap-3 group transition-transform duration-150 ease-out active:scale-[0.97]"
             >
               <Logo size={70} showText={false} light />
               <span className="font-display font-semibold text-cream-100 tracking-widest text-sm">
@@ -82,7 +82,7 @@ export default function Navbar() {
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`relative font-display text-sm tracking-wider transition-colors duration-300 ${
+                  className={`relative font-display text-sm tracking-wider transition-[color,transform] duration-150 ease-out active:scale-[0.97] ${
                     activeSection === link.href.slice(1)
                       ? 'text-cream-100'
                       : 'text-cream-400 hover:text-cream-100'
@@ -93,7 +93,7 @@ export default function Navbar() {
                     <motion.div
                       layoutId="nav-indicator"
                       className="absolute -bottom-1 left-0 right-0 h-px bg-cream-400"
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.25, ease: [0.77, 0, 0.175, 1] }}
                     />
                   )}
                 </button>
@@ -102,7 +102,7 @@ export default function Navbar() {
 
             {/* Hamburger */}
             <button
-              className="md:hidden relative w-8 h-8 flex items-center justify-center"
+              className="md:hidden relative w-11 h-11 -mr-1.5 flex items-center justify-center transition-transform duration-150 ease-out active:scale-[0.97]"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -110,17 +110,17 @@ export default function Navbar() {
                 <motion.span
                   className="block w-6 h-px bg-cream-100 origin-center"
                   animate={mobileOpen ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
                 />
                 <motion.span
                   className="block w-6 h-px bg-cream-100"
                   animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.15 }}
                 />
                 <motion.span
                   className="block w-6 h-px bg-cream-100 origin-center"
                   animate={mobileOpen ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
                 />
               </div>
             </button>
@@ -132,22 +132,22 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-navy-800/98 backdrop-blur-lg md:hidden"
+            className="fixed inset-0 z-40 bg-navy-800/[0.98] backdrop-blur-lg md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
+            transition={{ duration: 0.2 }}
           >
             <div className="flex flex-col items-center justify-center h-full gap-10">
               {navLinks.map((link, i) => (
                 <motion.button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className="font-serif text-3xl text-cream-100 tracking-wider"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ delay: i * 0.1, duration: 0.4 }}
+                  className="font-serif text-3xl text-cream-100 tracking-wider active:scale-[0.97]"
+                  initial={{ opacity: 0, transform: 'translateY(12px)' }}
+                  animate={{ opacity: 1, transform: 'translateY(0px)' }}
+                  exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                  transition={{ delay: 0.05 + i * 0.05, duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
                 >
                   {link.label}
                 </motion.button>

@@ -53,6 +53,12 @@ body {
   background: #b0a898;
 }
 
+/* Keyboard focus */
+:focus-visible {
+  outline: 1px solid var(--cream);
+  outline-offset: 4px;
+}
+
 /* Selection color */
 ::selection {
   background: var(--cream);
@@ -118,4 +124,15 @@ body {
     linear-gradient(rgba(200, 194, 184, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(200, 194, 184, 0.08) 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+/* Reduced motion: calm things down rather than switching everything off */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-scroll {
+    animation-duration: 160s;
+  }
 }
