@@ -39,7 +39,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <TransitionLink
             href={`${BASE}#projekti`}
-            className="group inline-flex items-center gap-3 font-dm text-sm text-cream-400 hover:text-cream-100 transition-[color,transform] duration-150 ease-out active:scale-[0.97]"
+            className="group inline-flex items-center gap-3 py-2.5 font-dm text-sm text-cream-400 hover:text-cream-100 transition-[color,transform] duration-150 ease-out active:scale-[0.97]"
           >
             <span aria-hidden="true" className="transition-transform duration-200 ease-out group-hover:-translate-x-1">
               ←

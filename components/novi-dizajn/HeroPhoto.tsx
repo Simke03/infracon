@@ -98,7 +98,7 @@ export default function HeroPhoto() {
                 e.preventDefault()
                 scrollToId('projekti')
               }}
-              className="group inline-flex items-center gap-3 font-dm text-sm tracking-widest text-cream-200 hover:text-cream-100 transition-[color,transform] duration-200 ease-out active:scale-[0.97]"
+              className="group inline-flex items-center gap-3 py-3 font-dm text-sm tracking-widest text-cream-200 hover:text-cream-100 transition-[color,transform] duration-200 ease-out active:scale-[0.97]"
             >
               NAŠI PROJEKTI
               <span className="block w-6 h-px bg-current transition-transform duration-200 ease-out group-hover:translate-x-1" />

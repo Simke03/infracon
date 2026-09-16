@@ -28,7 +28,7 @@ export default function FooterV2() {
                 <li key={link.href}>
                   <Link
                     href={`${BASE}${link.href}`}
-                    className="font-dm text-sm text-cream-400 hover:text-cream-100 inline-block transition-[color,transform] duration-150 ease-out active:scale-[0.97]"
+                    className="font-dm text-sm text-cream-400 hover:text-cream-100 inline-block py-2.5 transition-[color,transform] duration-150 ease-out active:scale-[0.97]"
                   >
                     {link.label}
                   </Link>

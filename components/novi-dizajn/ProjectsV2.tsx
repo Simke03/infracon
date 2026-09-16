@@ -44,7 +44,7 @@ export default function ProjectsV2() {
                     role="tab"
                     aria-selected={selected}
                     onClick={() => setActive(cat)}
-                    className={`relative pb-1.5 font-dm text-sm transition-[color,transform] duration-150 ease-out active:scale-[0.97] ${
+                    className={`relative py-2.5 pb-3 font-dm text-sm transition-[color,transform] duration-150 ease-out active:scale-[0.97] ${
                       selected ? 'text-navy-800' : 'text-navy-400 hover:text-navy-700'
                     }`}
                   >
@@ -52,7 +52,7 @@ export default function ProjectsV2() {
                     {selected && (
                       <motion.span
                         layoutId="proto-filter"
-                        className="absolute inset-x-0 bottom-0 h-px bg-navy-800"
+                        className="absolute inset-x-0 bottom-1.5 h-px bg-navy-800"
                         transition={{ duration: 0.25, ease: [0.77, 0, 0.175, 1] }}
                       />
                     )}
