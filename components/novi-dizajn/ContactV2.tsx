@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from 'react'
 import ScrollReveal from '../ScrollReveal'
+import MapCard from './MapCard'
 
 const fieldClass =
   'peer w-full bg-transparent border-0 border-b border-cream-400/25 px-0 pt-6 pb-3 font-dm text-cream-100 placeholder-transparent focus:outline-none focus:border-cream-200 transition-colors duration-200'
@@ -63,6 +64,10 @@ export default function ContactV2() {
                   </p>
                 </div>
               </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2}>
+              <MapCard className="aspect-[4/3] w-full mt-12" />
             </ScrollReveal>
           </div>
 
